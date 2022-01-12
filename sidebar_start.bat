@@ -1,2 +1,2 @@
-"C:\Users\ymeri\anaconda3\python.exe" "reddit_sidebar.py"
+"C:\Users\eson\anaconda3\python.exe" "C:\Users\eson\wiz-sidebar\reddit_sidebar.py"
 pause

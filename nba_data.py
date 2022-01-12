@@ -15,7 +15,8 @@ def perGame():
     wash_per = was[stats].div(was['GP'], axis=0).round(1)
     wash_per = pd.concat([was['PLAYER'], wash_per], axis=1)
     # wash_per.PLAYER = wash_per.PLAYER.str.split(n=1).str[1]
-    wash_per = wash_per.set_index('PLAYER')
+    wash_per = wash_per.sort_values(by='PTS', ascending=False)
+    wash_per = wash_per.set_index('PLAYER').head(15)
     return tabulate(wash_per, tablefmt='pipe', headers='keys',
         colalign=("left","center","center","center","center"), floatfmt=".1f")
 
@@ -42,7 +43,7 @@ def homeWon(wiz, opp, schedule):
 def schedule(): 
     curr_month = calendar.month_name[datetime.now().month]
     # curr_month = 'February'
-    with urllib.request.urlopen("http://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2020/league/00_full_schedule.json") as url:
+    with urllib.request.urlopen("http://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2021/league/00_full_schedule.json") as url:
         data = json.loads(url.read().decode())
     curr_month_games = [s['mscd']['g'] for s in data['lscd'] if s['mscd']['mon'] == curr_month]
     lst = []
